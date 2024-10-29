@@ -72,12 +72,14 @@ async function displayCollectionInfo() {
         }
 
         const outputArray = collections.map(collection => {
-            const fractionName = language === "nl" ? collection.fraction.logo.name.nl : collection.fraction.logo.name.en;
+            const fractionName = language === "nl" ? collection.fraction.name.nl : collection.fraction.name.en;
+            const fractionLogoName = collection.fraction.logo.name.en;
             const date = new Date(collection.timestamp);
             const formattedDate = date.toLocaleDateString('nl-NL', {year: 'numeric', month: '2-digit', day: '2-digit'});
             return {
                 date: formattedDate,
-                fraction: fractionName
+                fraction: fractionName,
+                fractionLogoName : fractionLogoName
             };
         });
 

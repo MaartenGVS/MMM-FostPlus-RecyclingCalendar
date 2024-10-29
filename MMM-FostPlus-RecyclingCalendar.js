@@ -37,7 +37,6 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
             this.loaded = true;
             this.calendarData = JSON.parse(payload)
             this.updateDom();
-
         } else if (notification === "ERROR") {
             this.troubles = true;
             this.updateDom();
@@ -63,13 +62,15 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
             return wrapper;
         }
 
+        this.calendarData = this.calendarData.filter(function (item) {
+            const [day, month, year] = item.date.split('-');
+            const itemDate = new Date(`${year}-${month}-${day}`);
+            const currentDate = new Date();
 
-        const today = moment().format("DD-MM-YYYY");
-        const todayIndex = this.calendarData.findIndex((element) => element.date === today);
-        this.calendarData = this.calendarData.slice(todayIndex);
+            return itemDate >= currentDate;
+        });
 
-
-        for (let i = 0; i < this.calendarData.length; i++) {
+        for (let i = 0; i < 5; i++) {
             const pickupContainer = document.createElement("div");
             pickupContainer.classList.add("binday-container");
 
@@ -81,7 +82,7 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
 
             const iconContainer = document.createElement("span");
             iconContainer.classList.add("binday-icon-container");
-            iconContainer.appendChild(this.getIconByTrashType(this.calendarData[i].fraction));
+            iconContainer.appendChild(this.getIconByTrashType(this.calendarData[i].fractionLogoName));
             pickupContainer.appendChild(iconContainer);
 
             wrapper.appendChild(pickupContainer);
@@ -101,17 +102,16 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
             case "Restafval":
             case "Non-recyclable waste":
                 return "https://assets.recycleapp.be/public/246e5684-96f9-4732-a45d-4eb949574187-household-reversed@3x.png";
-            case "Papier":
             case "Paper":
                 return "https://assets.recycleapp.be/public/b929170f-073a-45eb-98f5-24469fddb287-paper-reversed@3x.png";
             case "PMD":
                 return "https://assets.recycleapp.be/public/c28fda62-2d92-4cc5-81c4-3a4979ec2500-pmd-reversed@3x.png";
-            case "Groente-, fruit-, tuinafval":
             case "Biodegradable waste":
                 return "https://assets.recycleapp.be/public/7dff44b1-599b-4afe-807a-64a2671eff79-gft-reversed@3x.png";
-            case "Glas":
             case "Glass":
                 return "https://assets.recycleapp.be/public/a703d552-a9e7-496f-84e2-cff779bb0883-glass-reversed@3x.png";
+            case "Pruning waste (demand)":
+                return "https://assets.recycleapp.be/public/33110069-9ac0-4b91-9e07-aebf787bc534-pruningWasteDemand-reversed@3x.png";
             default:
                 return "";
         }
