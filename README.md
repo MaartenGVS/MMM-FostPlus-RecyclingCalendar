@@ -11,8 +11,8 @@ This module is an extension of the [MagicMirror² project](https://github.com/Mi
 1. Navigate into your MagicMirror's modules folder
 2. Execute: `git clone https://github.com/MaartenGVS/MMM-FostPlus-RecyclingCalendar`
 3. Navigate to the MMM-FostPlus-RecyclingCalendar directory: cd MMM-FostPlus-RecyclingCalendar`
-5. Add [config](https://github.com/MaartenGVS/MMM-FostPlus-RecyclingCalendar#configuration)
-6. Done
+4. Add [config](https://github.com/MaartenGVS/MMM-FostPlus-RecyclingCalendar#configuration)
+5. Done
 
 
 ## Configuration
