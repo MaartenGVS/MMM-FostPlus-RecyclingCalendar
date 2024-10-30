@@ -1,7 +1,6 @@
 Module.register("MMM-FostPlus-RecyclingCalendar", {
 
     defaults: {
-        language: "en",
         zipcode: "8500",
         streetName: "Sint-Martens-Latemlaan",
         streetNumber: "2",
@@ -9,6 +8,13 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
 
     getScripts: function () {
         return ["moment.js"];
+    },
+
+    getTranslations() {
+        return {
+            en: "translations/en.json",
+            nl: "translations/nl.json",
+        }
     },
 
     getStyles: function () {
@@ -24,7 +30,7 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
 
     updateCalendar: function () {
         this.sendSocketNotification("GET_CALENDAR", {
-            language: this.config.language,
+            language: config.language,
             zipcode: this.config.zipcode,
             streetName: this.config.streetName,
             streetNumber: this.config.streetNumber
@@ -44,7 +50,7 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
     },
 
     getHeader() {
-        return "Recycling Calendar";
+        return this.translate("TITLE");
     },
 
     getDom: function () {
@@ -52,12 +58,12 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
         wrapper.className = "MMM-FostPlus-RecyclingCalendar";
 
         if (this.troubles) {
-            wrapper.innerHTML = "Error fetching menu";
+            wrapper.innerHTML = this.translate("GENERAL_ERROR");
             return wrapper;
         }
 
         if (!this.loaded) {
-            wrapper.innerHTML = "Loading...";
+            wrapper.innerHTML = this.translate("LOADING");
             wrapper.className = "dimmed light small";
             return wrapper;
         }
