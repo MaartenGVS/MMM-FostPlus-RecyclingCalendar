@@ -118,6 +118,12 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
                 return "https://assets.recycleapp.be/public/a703d552-a9e7-496f-84e2-cff779bb0883-glass-reversed@3x.png";
             case "Pruning waste (demand)":
                 return "https://assets.recycleapp.be/public/33110069-9ac0-4b91-9e07-aebf787bc534-pruningWasteDemand-reversed@3x.png";
+            case "Green waste":
+                return "https://assets.recycleapp.be/public/e38d7d6e-daa0-430a-acde-421209fef89d-greenWaste-reversed@3x.png";
+            case "Large household waste (demand)":
+                return "https://assets.recycleapp.be/public/44cbc594-0624-4ed7-aec8-852ad2f8b914-largeHouseholdWasteDemand-reversed@3x.png";
+            case "Non-recyclable waste bag":
+                return "https://assets.recycleapp.be/public/0298bd59-e740-41b4-94fe-3c605622bc5b-householdBag-reversed@3x.png";
             default:
                 return "";
         }
