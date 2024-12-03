@@ -6,10 +6,6 @@ Module.register("MMM-FostPlus-RecyclingCalendar", {
         streetNumber: "2",
     },
 
-    getScripts: function () {
-        return ["moment.js"];
-    },
-
     getTranslations() {
         return {
             en: "translations/en.json",
