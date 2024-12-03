@@ -44,7 +44,16 @@ async function getCollectionInfo() {
         }
         const streetId = streetData.items[0].id;
 
-        const collectionUrl = `${basicUrl}/collections?zipcodeId=${postcodeId}&streetId=${streetId}&houseNumber=${houseNumber}&fromDate=2024-10-01&untilDate=2024-11-30&size=100`;
+        const currentDate = new Date();
+        const twoMonthsLater = new Date(currentDate);
+        twoMonthsLater.setMonth(twoMonthsLater.getMonth() + 2);
+
+        const formatDate = (date) => date.toISOString().split('T')[0];
+
+        const fromDate = formatDate(currentDate);
+        const untilDate = formatDate(twoMonthsLater);
+
+        const collectionUrl = `${basicUrl}/collections?zipcodeId=${postcodeId}&streetId=${streetId}&houseNumber=${houseNumber}&fromDate=${fromDate}&untilDate=${untilDate}&size=100`;
 
         const collectionResponse = await fetch(collectionUrl, {
             headers: consumerHeader
